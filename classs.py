@@ -2,7 +2,7 @@ class Vehicle:
     def __init__(self, brand, model, year):
         self.brand = brand
         self.model = model
-        self.year = int(year)
+        self.year = float(year)
     
     def info(self):
         print("Производитель -",self.brand)
@@ -14,13 +14,13 @@ class Vehicle:
 
 
 class Car(Vehicle):
-    def __init__(self, brand, model, year, fuel_type, max_speed, engine_capacity, rotation_speed, pe):
+    def __init__(self, brand, model, year, fuel_type, max_speed, engine_capacity, rotation_speed):
         super().__init__(brand, model, year)
-        self.fuel_type = int(fuel_type)
+        self.fuel_type = float(fuel_type)
         self.max_speed = max_speed
-        self.engine_capacity = int(engine_capacity)
-        self.rotation_speed = int(rotation_speed)
-        self.pe = int(pe)
+        self.engine_capacity = float(engine_capacity)
+        self.rotation_speed = float(rotation_speed)
+        self.pe = 1
     
     def info(self):
         super().info()
@@ -30,16 +30,14 @@ class Car(Vehicle):
         print("Частота вращения", self.rotation_speed,"об/мин")
 
     def engine_power_calc(self):
-        if self.pe == 1:
-            self.PE = 0,83
-        elif self.pe == 2:
-            self.PE = 0.9
-        elif self.pe == 3:
-            self.PE == 2
-        self.e_power = self.engine_capacity * self.PE * (self.rotation_speed/120)
+        if self.fuel_type == 1:
+            self.pe = 0,83
+        elif self.fuel_type == 2:
+            self.pe = 0.9
+        elif self.fuel_type == 3:
+            self.pe == 2
+        self.e_power = self.engine_capacity * self.pe * (self.rotation_speed/120)
         print("Мощность двигателя =",self.e_power,"кВт")
 
     def __del__(self):
         print("Сгорел сарай, сгорела хата")
-
-
